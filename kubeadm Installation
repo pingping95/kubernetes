@@ -252,7 +252,7 @@ kubeadm join 192.168.100.10:6443 --token f00nid.ygzfr8e0541yz4ys \
 
 - 아래와 같은 문구가 뜨면 완료
 
-![Kubeadm%20Install%20fc0627f5720f48f9b2e1fdb0cb3b7d70/Untitled.png](Kubeadm%20Install%20fc0627f5720f48f9b2e1fdb0cb3b7d70/Untitled.png)
+![Untitled](https://user-images.githubusercontent.com/67780144/93744983-b0e8dc00-fc2d-11ea-9e6a-b5fe017bf4c9.png)
 
 ## Master Node에서 확인
 
@@ -298,6 +298,13 @@ node2.test.local    Ready    <none>   3m20s   v1.19.2
 
     ( 아래 그림이 잘 안보이지만 3개의 Window를 분할하여 master, node1, node2 로 작업하였음. tmux 사용법은 인터넷에 검색하면 자세히 나온다. )
 
-![Kubeadm%20Install%20fc0627f5720f48f9b2e1fdb0cb3b7d70/Untitled%201.png](Kubeadm%20Install%20fc0627f5720f48f9b2e1fdb0cb3b7d70/Untitled%201.png)
+![Untitled 1](https://user-images.githubusercontent.com/67780144/93744985-b21a0900-fc2d-11ea-956c-b15a02f53bca.png)
 
 2. shell script를 활용하면 반복작업을 sh [xxx.sh](http://xxx.sh) 명령어 하나만 누르고 커피 마시고 오면 된다.
+
+
+- References
+
+https://gruuuuu.github.io/cloud/k8s-install/#
+
+https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
