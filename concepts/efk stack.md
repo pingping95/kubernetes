@@ -18,7 +18,7 @@
 
 ## #1
 
-![EFK%20Stack%200d2a8fbda2e34819a4dba81d53137ab8/Untitled.png](EFK%20Stack%200d2a8fbda2e34819a4dba81d53137ab8/Untitled.png)
+![Untitled](https://user-images.githubusercontent.com/67780144/94677794-76cbb880-0358-11eb-9086-3cd1c130e40d.png)
 
 단순한 접근이다. 대규모 Application Server가 있다고 가정해보자. 여기서 Collector & Shipper 역할을 하는 Fluentd 서버를 서버 내부에 설치할 수 있다. Log를 수집하고 Elasticsearch에게 푸시하며 병목 현상 (bottleneck down the line)이 발생할 수 있다.
 
@@ -31,11 +31,11 @@
     - 병목 현상이 발생하면 임시로 Log Data를 저장하는 Buffer 역할을 할 수 있다.
     - FluentD 내부의 Tag를 기반으로 하는 Routing 규칙을 추가하여 특정 Application 서버에서 오는 Log를 Elasticsearch 내부의 해당 Index로 보낼 수 있다.
 
-![EFK%20Stack%200d2a8fbda2e34819a4dba81d53137ab8/Untitled%201.png](EFK%20Stack%200d2a8fbda2e34819a4dba81d53137ab8/Untitled%201.png)
+![Untitled 1](https://user-images.githubusercontent.com/67780144/94677801-78957c00-0358-11eb-98d2-6ad99989d6e0.png)
 
 ## #3
 
-![EFK%20Stack%200d2a8fbda2e34819a4dba81d53137ab8/Untitled%202.png](EFK%20Stack%200d2a8fbda2e34819a4dba81d53137ab8/Untitled%202.png)
+![Untitled 2](https://user-images.githubusercontent.com/67780144/94677802-792e1280-0358-11eb-9149-6a8d63af4c02.png)
 
 FluentD에는 복제 (Replication) 혹은 샤딩 (Sharding) 기능이 없다. Multiple Instance를 DNS 뒷 단에 실행할 수 있지만 만약 하나의 Instance가 죽으면 Buffer data를 지닐 것이다. 이러한 시나리오에서 FluentBit의 Log를 Kafka topic으로 Push하고 FluentD가 이 topic을 Subscription하도록 할 수 있다. 여기서 Kafka는 무거운 복제와 Shading를 처리해준다.
 
@@ -46,7 +46,7 @@ FluentD에는 복제 (Replication) 혹은 샤딩 (Sharding) 기능이 없다. Mu
 
 ## #4
 
-![EFK%20Stack%200d2a8fbda2e34819a4dba81d53137ab8/Untitled%203.png](EFK%20Stack%200d2a8fbda2e34819a4dba81d53137ab8/Untitled%203.png)
+![Untitled 3](https://user-images.githubusercontent.com/67780144/94677805-7a5f3f80-0358-11eb-82ed-0626c471c29c.png)
 
 위 #1, #2, #3의 방법들이 대부분의 Scenarios에서 잘 작동하지만 2가지 Issue가 있다.
 
@@ -59,7 +59,7 @@ FluentD에는 복제 (Replication) 혹은 샤딩 (Sharding) 기능이 없다. Mu
 
 ## #1
 
-![EFK%20Stack%200d2a8fbda2e34819a4dba81d53137ab8/Untitled%204.png](EFK%20Stack%200d2a8fbda2e34819a4dba81d53137ab8/Untitled%204.png)
+![Untitled 4](https://user-images.githubusercontent.com/67780144/94677806-7af7d600-0358-11eb-86d4-d03a1e29e52e.png)
 
 이에 관해 Kubernetes는 프로그램 자체가 Pod 내부의 컨테이너에서 실행되며 Application Server가 없다. 이상적으로는 Kubernetes에서 실행되는 Application은 stdout/stderr에 Log를 출력한 다음 Kubernetes가 디렉터리의 Hostnode 내부에 있는 Log File에 기록해야 한다.
 
@@ -71,7 +71,7 @@ FluentD에는 복제 (Replication) 혹은 샤딩 (Sharding) 기능이 없다. Mu
 
 ## #2
 
-![EFK%20Stack%200d2a8fbda2e34819a4dba81d53137ab8/Untitled%205.png](EFK%20Stack%200d2a8fbda2e34819a4dba81d53137ab8/Untitled%205.png)
+![Untitled 5](https://user-images.githubusercontent.com/67780144/94677807-7b906c80-0358-11eb-930b-531790ffc936.png)
 
 FluentBit을 Daemonset으로 시작하여 FluentBit Agent의 Instance가 각 Node에서 실행되고 있는지를 확인한다. FluentD는 Kubernetes 클러스터 내에서 Statefulset으로 실행될 수 있도록 구성할 수 있다.
 
@@ -79,7 +79,7 @@ FluentBit을 Daemonset으로 시작하여 FluentBit Agent의 Instance가 각 Nod
 
 Openshift는 Kubernetes를 기반으로 하는 기업용 Container Application Platform이다. 컨테이너에서 Log를 수집하고 검색하는 문제를 해결하기 위해 EFK Stack을 사용하여 Log 집계를 배포할 수 있다. Docker log는 각 Node에서 FluentD Process에 의해 수집되고 저장을 위해 Elasticsearch로 전달되며 Kibana를 통해 UI가 제공되는 메커니즘을 갖고 있다.
 
-![EFK%20Stack%200d2a8fbda2e34819a4dba81d53137ab8/Untitled%206.png](EFK%20Stack%200d2a8fbda2e34819a4dba81d53137ab8/Untitled%206.png)
+![Untitled 6](https://user-images.githubusercontent.com/67780144/94677810-7c290300-0358-11eb-9eed-0237336b31d5.png)
 
 - Ref
 
