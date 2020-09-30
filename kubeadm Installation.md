@@ -3,6 +3,7 @@
 # 목적
 
 - 1 Master Node, 2 Worker Node를 Kubeadm으로 간단하게 설치하는 실습을 진행함
+- kubernetes 1.19.2 버젼을 설치
 
 ---
 

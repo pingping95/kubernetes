@@ -1,2 +1,2 @@
 # kubernetes
-kubernetes 관련 내용 정리
+kubernetes 관련 내용 정리.
