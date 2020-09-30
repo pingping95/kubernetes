@@ -1,6 +1,6 @@
 Kubernetes 개념 정리하는 곳입니다.
 
-### 학습 Upload List
+### 추후 학습 Upload List
 
 1. CNI in kubernetes
 2. SDN in virtulaization
