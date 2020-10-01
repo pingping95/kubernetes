@@ -34,10 +34,10 @@
 - Hypervisior : KVM
 - Network
     - NAT : 192.168.100.0/24
-- VM 정보
-    - Master1 : 192.168.100.10/24, 2vCPU, RAM 3g
-    - Master2 : 192.168.100.11/24, 2vCPU, RAM 3g
-    - Master3 : 192.168.100.12/24, 2vCPU, Ram 3g
+- VM Spec
+    - Master1 : CentOS7, 192.168.100.10/24, 2vCPU, RAM 3g
+    - Master2 : CentOS7, 192.168.100.11/24, 2vCPU, RAM 3g
+    - Master3 : CentOS7, 192.168.100.12/24, 2vCPU, Ram 3g
 
 # 초기 작업
 
