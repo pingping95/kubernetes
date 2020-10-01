@@ -12,7 +12,8 @@
 
 # Monitoring
 
-![Kubernetes%20Monitoring%20%E1%84%80%E1%85%A2%E1%84%82%E1%85%A7%E1%86%B7,%20Architecture%207cab0370a31f46a08f40c205dbf61bba/Untitled.png](Kubernetes%20Monitoring%20%E1%84%80%E1%85%A2%E1%84%82%E1%85%A7%E1%86%B7,%20Architecture%207cab0370a31f46a08f40c205dbf61bba/Untitled.png)
+![Untitled](https://user-images.githubusercontent.com/67780144/94678152-04a7a380-0359-11eb-805b-947dc9e1d76a.png)
+
 
 ## k8s Cluster에서 Data를 수집할 수 있는 Object
 
@@ -39,7 +40,7 @@
 
 # Prometheus Monitoring Simple Architecture
 
-![Kubernetes%20Monitoring%20%E1%84%80%E1%85%A2%E1%84%82%E1%85%A7%E1%86%B7,%20Architecture%207cab0370a31f46a08f40c205dbf61bba/Untitled%201.png](Kubernetes%20Monitoring%20%E1%84%80%E1%85%A2%E1%84%82%E1%85%A7%E1%86%B7,%20Architecture%207cab0370a31f46a08f40c205dbf61bba/Untitled%201.png)
+![Untitled 1](https://user-images.githubusercontent.com/67780144/94678156-05d8d080-0359-11eb-8df8-6ca6ce44bdbd.png)
 
 ## Metric 수집 부분
 
@@ -78,11 +79,11 @@ Prometheus 내의 Memory와 Local Disk에 저장된다. 뒷단에 별도의 데�
 
 - Kubernetes monitoring with Prometheus: Architecture overview
 
-![Kubernetes%20Monitoring%20%E1%84%80%E1%85%A2%E1%84%82%E1%85%A7%E1%86%B7,%20Architecture%207cab0370a31f46a08f40c205dbf61bba/Untitled%202.png](Kubernetes%20Monitoring%20%E1%84%80%E1%85%A2%E1%84%82%E1%85%A7%E1%86%B7,%20Architecture%207cab0370a31f46a08f40c205dbf61bba/Untitled%202.png)
+![Untitled 2](https://user-images.githubusercontent.com/67780144/94678160-06716700-0359-11eb-878f-475253997fb1.png)
 
 - Monitoring Kubernetes components on a Prometheus stack
 
-![Kubernetes%20Monitoring%20%E1%84%80%E1%85%A2%E1%84%82%E1%85%A7%E1%86%B7,%20Architecture%207cab0370a31f46a08f40c205dbf61bba/Untitled%203.png](Kubernetes%20Monitoring%20%E1%84%80%E1%85%A2%E1%84%82%E1%85%A7%E1%86%B7,%20Architecture%207cab0370a31f46a08f40c205dbf61bba/Untitled%203.png)
+![Untitled 3](https://user-images.githubusercontent.com/67780144/94678163-07a29400-0359-11eb-8544-2050253cee05.png)
 
 - Reference
 
