@@ -1,25 +1,5 @@
 # Ceph Concept & Architecture
 
-- 학습해야 할 List
-
-    xfs
-
-    ext4
-
-    brtfs
-
-    Distributed ..
-
-    OSD
-
-    LIBRADOS
-
-    POSIX
-
-    Sharding
-
-    Crush
-
 # 학습 배경
 
 - Kubernetes를 사용하다 보면 rook-ceph, storageclass 에서 ceph Storage를 사용하게 된다. Hands-on을 통해 간단히 사용하여 보았지만 내부적으로 돌아가는 Logic, 흐름을 이해하지 못하여 따로 정리하게 되었습니다.
