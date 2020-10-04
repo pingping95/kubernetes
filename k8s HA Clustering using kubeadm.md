@@ -38,6 +38,7 @@
     - Master1 : CentOS7, 192.168.100.10/24, 2vCPU, RAM 3g
     - Master2 : CentOS7, 192.168.100.11/24, 2vCPU, RAM 3g
     - Master3 : CentOS7, 192.168.100.12/24, 2vCPU, Ram 3g
+    - Worker1 : CnetOS7, 192.168.100.20/24, 2vCPU, Ram 3g
 
 # 초기 작업
 
@@ -56,6 +57,8 @@
     → master2
 
     → master3
+    
+    - worker1
 
 - 각 Node에서 수행
 
@@ -65,6 +68,7 @@
 192.168.100.10          master1
 192.168.100.11          master2
 192.168.100.12          master3
+192.168.100.20          worker1
 
 # hostname 변경
 
@@ -76,6 +80,9 @@ hostnamectl set-hostname master2
 
 # master3
 hostnamectl set-hostname master3
+
+# worker1
+hostnamectl set-hostname worker1
 ```
 
 - Docker 설치
@@ -161,7 +168,7 @@ vi /etc/fstab
 #/dev/mapper/centos-swap swap                    swap    defaults        0 0
 ```
 
-# Kubeadm으로 Master Node 설치
+# Kubeadm으로 Node 설치
 
 - 순서는 아래와 같다.
     - k8s repo 추가
@@ -311,7 +318,33 @@ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
-- Test
+## worker1 Join to Master Node
+- worker1은 Firewall Port 제외 동일하게 설치해준다.
+
+```bash
+( kubeadm token create 명령어로 Master1에서 새로운 Token 발행 후 Join 작업을 해줌, 위와 token값이 다를 것임 )
+
+kubeadm join 192.168.100.10:26443 --token t69wl1.6iq2xfgp8thiz9bb \
+>     --discovery-token-ca-cert-hash sha256:b94dc94f3a249c237f39808a6ff2d1f68cbe058b9d4aef6d54173b5523976238
+[preflight] Running pre-flight checks
+	[WARNING IsDockerSystemdCheck]: detected "cgroupfs" as the Docker cgroup driver. The recommended driver is "systemd". Please follow the guide at https://kubernetes.io/docs/setup/cri/
+	[WARNING Hostname]: hostname "worker1" could not be reached
+	[WARNING Hostname]: hostname "worker1": lookup worker1 on 8.8.8.8:53: no such host
+..
+..
+..
+
+This node has joined the cluster:
+* Certificate signing request was sent to apiserver and a response was received.
+* The Kubelet was informed of the new secure connection details.
+
+Run 'kubectl get nodes' on the control-plane to see this node join the cluster.
+
+
+
+```
+
+## Test
 
 ```bash
 [root@master1 ~]# kubectl get nodes
@@ -319,18 +352,21 @@ NAME      STATUS     ROLES    AGE     VERSION
 master1   NotReady   master   8m27s   v1.19.2
 master2   NotReady   master   60s     v1.19.2
 master3   NotReady   master   55s     v1.19.2
+worker1   NotReady   <none>   106s    v1.19.2
 
 [root@master2 ~]# kubectl get nodes
 NAME      STATUS     ROLES    AGE     VERSION
 master1   NotReady   master   8m27s   v1.19.2
 master2   NotReady   master   60s     v1.19.2
 master3   NotReady   master   55s     v1.19.2
+worker1   NotReady   <none>   106s    v1.19.2
 
 [root@master3 ~]# kubectl get nodes
 NAME      STATUS     ROLES    AGE     VERSION
 master1   NotReady   master   8m27s   v1.19.2
 master2   NotReady   master   60s     v1.19.2
 master3   NotReady   master   55s     v1.19.2
+worker1   NotReady   <none>   106s    v1.19.2
 ```
 
 ⇒ NotReady는 CNI가 설치되어 있지 않아서이다. CNI 설치를 해주자.
@@ -370,6 +406,7 @@ kube-scheduler-master2            1/1     Running             0          3m27s
 kube-scheduler-master3            1/1     Running             0          115s
 weave-net-5w7cw                   1/2     Running             0          34s
 weave-net-6l92n                   0/2     ContainerCreating   0          34s
+weave-net-nm5m2                   0/2     ContainerCreating   0          90s
 weave-net-psnfk                   1/2     Running             0          34s
 
 ```
@@ -384,6 +421,7 @@ NAME      STATUS   ROLES    AGE     VERSION
 master1   Ready    master   11m     v1.19.2
 master2   Ready    master   4m10s   v1.19.2
 master3   Ready    master   4m5s    v1.19.2
+worker1   Ready    <none>   106s    v1.19.2
 ```
 
 - Ref
