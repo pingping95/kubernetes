@@ -1,16 +1,12 @@
 # Architecture
 
-# 개요
-
-- 로깅 시스템으로 ELK와 EFK가 많이 쓰입니다. EFK는 Openshift 4.4 버젼에서 Operator Framework를 통해 설치를 해보았으므로 ELK 스택에 대해 알아보고 설치해보고 최종적으로 약간의 실습을 진행해보려고 한다.
-
 # ELK Stack?
 
 - Logstash
     - Opensource
     - 다양한 소스(DB, csv 파일 등)의 로그 또는 트랜잭션 데이터를 수집, 집계, 파싱하여 Elasticsearch로 전달
 - Elasticsearch
-    - Logstash 로부터 받은 데이터를 검색 및 집계를 하여 필요한 관심 있는 정보를 획득
+    - Logstash 로부터 받은 데이터를 검색 및 집계를 하여 필요한 관심 있는 정보를 **획득**
 - Kibana
     - Elasticsearch의 빠른 검색을 통해 데이터를 시각화 및 모니터링
 
