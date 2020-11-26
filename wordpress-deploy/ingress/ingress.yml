@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: wping
+spec:
+  tls:
+  - hosts:
+    - test.exam.com
+    secretName: ingress-tls-secret
+  rules:
+    - host: nam.exam.com
+      http:
+        paths:
+        - path: /
+          backend:
+            serviceName: clusterip-wp
+            servicePort: 80
